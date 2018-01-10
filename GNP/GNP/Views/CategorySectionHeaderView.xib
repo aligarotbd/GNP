@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zUu-Vf-Ra4" customClass="CategorySectionHeaderView" customModule="GlobalNewsPortal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="685" height="344"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sport" translatesAutoresizingMaskIntoConstraints="NO" id="VoV-go-Cnr">
+                    <rect key="frame" x="0.0" y="0.0" width="685" height="344"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
+                </imageView>
+                <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvR-nk-xE0">
+                    <rect key="frame" x="0.0" y="0.0" width="685" height="344"/>
+                    <subviews>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJA-Cf-A4x">
+                            <rect key="frame" x="0.0" y="294" width="685" height="50"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Zh5-8z-hUd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azq-wB-Cj0">
+                            <rect key="frame" x="0.0" y="293" width="685" height="1"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="0.74647887319999995" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="H2Y-Gs-O5Z"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="azq-wB-Cj0" secondAttribute="trailing" id="BMW-sn-Rli"/>
+                        <constraint firstAttribute="trailing" secondItem="hJA-Cf-A4x" secondAttribute="trailing" id="IyJ-cY-wh7"/>
+                        <constraint firstItem="azq-wB-Cj0" firstAttribute="leading" secondItem="AvR-nk-xE0" secondAttribute="leading" id="Qo0-aP-zDy"/>
+                        <constraint firstAttribute="bottom" secondItem="hJA-Cf-A4x" secondAttribute="bottom" id="Zn9-X8-BcU"/>
+                        <constraint firstItem="hJA-Cf-A4x" firstAttribute="leading" secondItem="AvR-nk-xE0" secondAttribute="leading" id="c5I-Zz-hk7"/>
+                        <constraint firstItem="hJA-Cf-A4x" firstAttribute="top" secondItem="azq-wB-Cj0" secondAttribute="bottom" id="pdK-oC-J9j"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+            <accessibility key="accessibilityConfiguration">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
+            <constraints>
+                <constraint firstItem="hbe-qr-2wi" firstAttribute="trailing" secondItem="VoV-go-Cnr" secondAttribute="trailing" id="6Hv-9W-19G"/>
+                <constraint firstItem="AvR-nk-xE0" firstAttribute="top" secondItem="hbe-qr-2wi" secondAttribute="top" id="Fho-fh-jv4"/>
+                <constraint firstItem="VoV-go-Cnr" firstAttribute="leading" secondItem="hbe-qr-2wi" secondAttribute="leading" id="JW4-5N-w3X"/>
+                <constraint firstItem="VoV-go-Cnr" firstAttribute="top" secondItem="hbe-qr-2wi" secondAttribute="top" id="MQp-Ge-iCD"/>
+                <constraint firstItem="hbe-qr-2wi" firstAttribute="bottom" secondItem="VoV-go-Cnr" secondAttribute="bottom" id="hHv-GZ-ofe"/>
+                <constraint firstItem="AvR-nk-xE0" firstAttribute="leading" secondItem="hbe-qr-2wi" secondAttribute="leading" id="qMF-fp-zuo"/>
+                <constraint firstItem="hbe-qr-2wi" firstAttribute="trailing" secondItem="AvR-nk-xE0" secondAttribute="trailing" id="xaI-f4-cTN"/>
+                <constraint firstItem="hbe-qr-2wi" firstAttribute="bottom" secondItem="AvR-nk-xE0" secondAttribute="bottom" id="zJZ-5E-ue4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="hbe-qr-2wi"/>
+            <connections>
+                <outlet property="categoryImageView" destination="VoV-go-Cnr" id="lfB-Mu-z3o"/>
+                <outlet property="titelLabel" destination="hJA-Cf-A4x" id="bPu-KT-cbx"/>
+            </connections>
+            <point key="canvasLocation" x="-11.5" y="-109"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="sport" width="16" height="16"/>
+    </resources>
+</document>
