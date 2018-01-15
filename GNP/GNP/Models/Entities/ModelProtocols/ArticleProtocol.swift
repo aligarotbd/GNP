@@ -21,7 +21,3 @@ protocol ArticleProtocol {
     var source: myType? {get set}
 }
 
-extension ArticleProtocol {
-    
-}
-

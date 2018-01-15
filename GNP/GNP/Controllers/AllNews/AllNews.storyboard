@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,7 +93,41 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSD-kb-sql">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-wA-KgS">
+                                <rect key="frame" x="0.0" y="606.5" width="375" height="60.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7D-lt-dcM">
+                                        <rect key="frame" x="5" y="0.0" width="60.5" height="60.5"/>
+                                        <state key="normal" image="left">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPreviousButtonTapped:" destination="BLN-3z-2IR" eventType="touchUpInside" id="mOk-eA-cyt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbJ-3e-2wf">
+                                        <rect key="frame" x="309.5" y="0.0" width="60.5" height="60.5"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="right">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onNextButtonTapped:" destination="BLN-3z-2IR" eventType="touchUpInside" id="Oyl-I8-4jl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="0.62367957750000003" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="r7D-lt-dcM" firstAttribute="top" secondItem="p4G-wA-KgS" secondAttribute="top" id="K9J-F6-ngT"/>
+                                    <constraint firstAttribute="bottom" secondItem="LbJ-3e-2wf" secondAttribute="bottom" id="Pae-Wg-wCx"/>
+                                    <constraint firstItem="r7D-lt-dcM" firstAttribute="width" secondItem="p4G-wA-KgS" secondAttribute="height" id="d3X-Ie-Rbs"/>
+                                    <constraint firstAttribute="trailing" secondItem="LbJ-3e-2wf" secondAttribute="trailing" constant="5" id="hOw-W1-DE3"/>
+                                    <constraint firstItem="LbJ-3e-2wf" firstAttribute="top" secondItem="p4G-wA-KgS" secondAttribute="top" id="lcC-6d-wyw"/>
+                                    <constraint firstAttribute="bottom" secondItem="r7D-lt-dcM" secondAttribute="bottom" id="sLE-Bs-McA"/>
+                                    <constraint firstItem="r7D-lt-dcM" firstAttribute="leading" secondItem="p4G-wA-KgS" secondAttribute="leading" constant="5" id="yAg-uK-V5C"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSD-kb-sql">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.58925781249999998" green="0.10036272321428572" blue="0.03568638392857143" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -100,9 +135,14 @@
                         <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="0.62367957746619718" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hND-be-DZg" firstAttribute="top" secondItem="5WB-aI-6Qk" secondAttribute="top" id="0JL-qF-QfA"/>
+                            <constraint firstItem="5WB-aI-6Qk" firstAttribute="bottom" secondItem="p4G-wA-KgS" secondAttribute="bottom" id="2JK-rm-34Y"/>
                             <constraint firstItem="VSD-kb-sql" firstAttribute="leading" secondItem="5WB-aI-6Qk" secondAttribute="leading" id="7Lc-TZ-yjy"/>
+                            <constraint firstItem="p4G-wA-KgS" firstAttribute="leading" secondItem="5WB-aI-6Qk" secondAttribute="leading" id="CUb-IM-oaF"/>
+                            <constraint firstItem="5WB-aI-6Qk" firstAttribute="trailing" secondItem="p4G-wA-KgS" secondAttribute="trailing" id="T2a-IX-MyB"/>
                             <constraint firstItem="5WB-aI-6Qk" firstAttribute="trailing" secondItem="hND-be-DZg" secondAttribute="trailing" id="a7o-Kk-MGM"/>
+                            <constraint firstItem="LbJ-3e-2wf" firstAttribute="width" secondItem="p4G-wA-KgS" secondAttribute="height" id="gGl-Nv-eRB"/>
                             <constraint firstItem="hND-be-DZg" firstAttribute="leading" secondItem="5WB-aI-6Qk" secondAttribute="leading" id="pN0-ea-Top"/>
+                            <constraint firstItem="p4G-wA-KgS" firstAttribute="height" secondItem="5WB-aI-6Qk" secondAttribute="height" multiplier="1/10" id="rva-gH-TrR"/>
                             <constraint firstItem="VSD-kb-sql" firstAttribute="top" secondItem="5WB-aI-6Qk" secondAttribute="top" id="sEe-Of-WhD"/>
                             <constraint firstItem="5WB-aI-6Qk" firstAttribute="bottom" secondItem="hND-be-DZg" secondAttribute="bottom" id="t75-lp-Vjv"/>
                             <constraint firstItem="5WB-aI-6Qk" firstAttribute="trailing" secondItem="VSD-kb-sql" secondAttribute="trailing" id="ybI-GE-iQY"/>
@@ -138,4 +178,8 @@
             <point key="canvasLocation" x="-113" y="239"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="left" width="128" height="128"/>
+        <image name="right" width="128" height="128"/>
+    </resources>
 </document>
