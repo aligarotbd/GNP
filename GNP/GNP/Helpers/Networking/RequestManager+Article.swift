@@ -26,8 +26,8 @@ extension RequestManager {
             parametrs.append("category=\(category)&")
         }
         
-        let fullURL = RequestManager.createFullURL(withParameters: parametrs)
-        
+        let fullURL = RequestManager.createFullURL(withParameters: parametrs+"pageSize=100&")
+        print(fullURL)
         Alamofire.request(fullURL).responseJSON(completionHandler: { response in
             RequestManager.defaultResponseAction(response: response, completionHandler: completionHandler)
         })

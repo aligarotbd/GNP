@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import CoreData
+import GradientCircularProgress
 
 enum NewsDetailMode {
     case saved
@@ -25,12 +26,19 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     var mode: NewsDetailMode = .notSaved
     var article: Any?
     
+    private var progress: GradientCircularProgress!
+    private var progressView: UIView!
     private var canSave = true
     private var loadFirstPage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.newsWebView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        self.progress = GradientCircularProgress()
+        self.progressView = self.progress.show(frame: CGRect(x: self.view.center.x - 50, y: self.initialView.center.y - 100, width: 100, height: 100), style: MyStyle())
+        self.initialView.addSubview(self.progressView!)
+                
         self.setupContent()
     }
     
@@ -55,7 +63,12 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if !self.loadFirstPage {
-            self.initialView.isHidden = true
+            UIView.animate(withDuration: 0.6, animations: {
+                self.initialView.alpha = 0
+            }, completion: { (success) in
+                self.initialView.removeFromSuperview()
+            })
+
             self.loadFirstPage = true
             if self.canSave {
                 self.saveItem.isEnabled = true
@@ -85,6 +98,10 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
             self.canSave = true
             self.saveItem.isEnabled = true
         }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        print(self.newsWebView.estimatedProgress)
     }
 }
 
