@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategorySectionHeaderView: UIView {
+class CategorySectionHeaderView: UITableViewCell {
     @IBOutlet weak var titelLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
     
@@ -25,8 +25,10 @@ class CategorySectionHeaderView: UIView {
         self.afterTapeedHandler = tappedHandler
         self.initialHeigth = self.frame.height
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.changeState))
-        self.addGestureRecognizer(tap)
+        if tappedHandler != nil {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.changeState))
+            self.addGestureRecognizer(tap)
+        }
     }
     
     @objc func changeState() {

@@ -17,7 +17,6 @@
 		CE0CD5591FFCC72C00F17815 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5531FFCC72C00F17815 /* Article+CoreDataClass.swift */; };
 		CE0CD55A1FFCC72C00F17815 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5541FFCC72C00F17815 /* Article+CoreDataProperties.swift */; };
 		CE0CD55B1FFCC72C00F17815 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5551FFCC72C00F17815 /* Category+CoreDataClass.swift */; };
-		CE0CD55C1FFCC72C00F17815 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5561FFCC72C00F17815 /* Category+CoreDataProperties.swift */; };
 		CE0CD55F1FFCCB3500F17815 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD55E1FFCCB3500F17815 /* String+Custom.swift */; };
 		CE0CD5611FFCCB4D00F17815 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5601FFCCB4D00F17815 /* UIColor+Custom.swift */; };
 		CE0CD5641FFCCB8700F17815 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5631FFCCB8700F17815 /* RequestManager.swift */; };
@@ -38,6 +37,9 @@
 		CE0CD5881FFCD10700F17815 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5871FFCD10700F17815 /* MainViewController.swift */; };
 		CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE19F12720078B2200ACBAF2 /* MyStyle.swift */; };
 		CE72785E200CABBC00CE2F4D /* PageScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72785D200CABBC00CE2F4D /* PageScrollDelegate.swift */; };
+		CE727861200CC96700CE2F4D /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE727860200CC96700CE2F4D /* Favorites.storyboard */; };
+		CE727863200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */; };
+		CE72786B200D005000CE2F4D /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */; };
 		CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */; };
 		CEB1AE751FFBDDDC0082A7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1AE731FFBDDDC0082A7D8 /* Main.storyboard */; };
 		CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE761FFBDDDC0082A7D8 /* GNP.xcdatamodeld */; };
@@ -58,7 +60,6 @@
 		CE0CD5531FFCC72C00F17815 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE0CD5541FFCC72C00F17815 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE0CD5551FFCC72C00F17815 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CE0CD5561FFCC72C00F17815 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE0CD55E1FFCCB3500F17815 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		CE0CD5601FFCCB4D00F17815 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		CE0CD5631FFCCB8700F17815 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -79,6 +80,9 @@
 		CE0CD5871FFCD10700F17815 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CE19F12720078B2200ACBAF2 /* MyStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStyle.swift; sourceTree = "<group>"; };
 		CE72785D200CABBC00CE2F4D /* PageScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScrollDelegate.swift; sourceTree = "<group>"; };
+		CE727860200CC96700CE2F4D /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCategoriesViewController.swift; sourceTree = "<group>"; };
+		CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEB1AE6C1FFBDDDC0082A7D8 /* GNP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB1AE741FFBDDDC0082A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,9 +129,9 @@
 		CE0CD5411FFCBDE100F17815 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */,
 				CE0CD5521FFCC72C00F17815 /* Source+CoreDataProperties.swift */,
 				CE0CD5541FFCC72C00F17815 /* Article+CoreDataProperties.swift */,
-				CE0CD5561FFCC72C00F17815 /* Category+CoreDataProperties.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -223,6 +227,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		CE72785F200CC94C00CE2F4D /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */,
+				CE727860200CC96700CE2F4D /* Favorites.storyboard */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		CEACA4FD1FFBDF6700F6D9DC /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0CD5781FFCCF5800F17815 /* SideMenu */,
+				CE72785F200CC94C00CE2F4D /* Favorites */,
 				CE0CD5771FFCCF5000F17815 /* MyNews */,
 				CE0CD5761FFCCF4000F17815 /* AllNews */,
 				CE0CD5751FFCCF3800F17815 /* Main */,
@@ -378,6 +392,7 @@
 			files = (
 				CE0CD56E1FFCCCE200F17815 /* ArticleCell.xib in Resources */,
 				CEB1AE7D1FFBDDDC0082A7D8 /* LaunchScreen.storyboard in Resources */,
+				CE727861200CC96700CE2F4D /* Favorites.storyboard in Resources */,
 				CE0CD5801FFCD01F00F17815 /* MyNews.storyboard in Resources */,
 				CEB1AE7A1FFBDDDC0082A7D8 /* Assets.xcassets in Resources */,
 				CE0CD57C1FFCCF9F00F17815 /* Menu.storyboard in Resources */,
@@ -453,7 +468,6 @@
 				CE0CD5441FFCC5C300F17815 /* NotSavedArticle.swift in Sources */,
 				CE0CD5881FFCD10700F17815 /* MainViewController.swift in Sources */,
 				CE0CD57E1FFCCFF000F17815 /* SavedNewsViewController.swift in Sources */,
-				CE0CD55C1FFCC72C00F17815 /* Category+CoreDataProperties.swift in Sources */,
 				CE0CD55B1FFCC72C00F17815 /* Category+CoreDataClass.swift in Sources */,
 				CE0CD5641FFCCB8700F17815 /* RequestManager.swift in Sources */,
 				CE0CD5591FFCC72C00F17815 /* Article+CoreDataClass.swift in Sources */,
@@ -472,7 +486,9 @@
 				CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */,
 				CE0CD56D1FFCCCE200F17815 /* ArticleCell.swift in Sources */,
 				CE0CD54C1FFCC63500F17815 /* SourceProtocol.swift in Sources */,
+				CE727863200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift in Sources */,
 				CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */,
+				CE72786B200D005000CE2F4D /* Category+CoreDataProperties.swift in Sources */,
 				CE72785E200CABBC00CE2F4D /* PageScrollDelegate.swift in Sources */,
 				CE0CD5721FFCCD8200F17815 /* CategorySectionHeaderView.swift in Sources */,
 				CE0CD5701FFCCD1100F17815 /* SideMenuItemCollectionViewCell.swift in Sources */,

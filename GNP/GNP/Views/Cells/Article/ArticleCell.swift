@@ -58,7 +58,6 @@ class ArticleCell: UITableViewCell {
             queue.addOperation {
                 do{
                     let data = try Data(contentsOf: url)
-                    print(url == self.url)
                     if url == self.url {
                         DispatchQueue.main.async {
                             UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {

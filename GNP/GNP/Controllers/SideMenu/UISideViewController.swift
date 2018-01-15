@@ -20,19 +20,47 @@ class UISideViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var sideMenuCollectionView: UICollectionView!
     @IBOutlet weak var searchImage: UIImageView!
     @IBOutlet weak var searhTextField: UITextField!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var titleForSegment: UILabel!
     
+    @IBOutlet weak var topCollectionViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableViewButtonConstraint: NSLayoutConstraint!
     var deledate: UISideViewControllerDelegate?
     
     private var selectedItems: [Int : String] = [:]
-    private let allCategories = ["business", "entertainment", "gaming", "general", "health-and-medical", "music", "politics", "science-and-nature", "sport", "technology"]
+    private var allCategories: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupDataSource()
         
         self.searhTextField.delegate = self
         self.sideMenuCollectionView.dataSource = self
         self.sideMenuCollectionView.delegate = self
         self.sideMenuCollectionView.allowsMultipleSelection = true
+    }
+    
+    func showOnlyCollectionView() {
+        self.titleForSegment.isHidden = true
+        self.searhTextField.isHidden = true
+        self.sortSegmentedControl.isHidden = true
+        self.leftButton.setTitle("Save", for: .normal)
+        
+        self.tableViewButtonConstraint.isActive = false
+        self.tableViewButtonConstraint = NSLayoutConstraint(item: self.sideMenuCollectionView, attribute: .bottom, relatedBy: .equal, toItem: self.sideMenuCollectionView.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        self.tableViewButtonConstraint.isActive = true
+        
+        self.topCollectionViewConstraint.isActive = false
+        self.topCollectionViewConstraint = NSLayoutConstraint(item: self.sideMenuCollectionView, attribute: .top, relatedBy: .equal, toItem: self.sideMenuCollectionView.superview, attribute: .top, multiplier: 1, constant: 10)
+        self.topCollectionViewConstraint.isActive = true
+        
+        self.sideMenuCollectionView.reloadData()
+    }
+
+    private func setupDataSource() {
+        self.allCategories = self.deledate!.dataForSideView()
     }
     
     //MARK UICollectionViewDataSource
