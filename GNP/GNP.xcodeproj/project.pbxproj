@@ -36,6 +36,7 @@
 		CE0CD5841FFCD0A300F17815 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5831FFCD0A300F17815 /* NewsDetailViewController.swift */; };
 		CE0CD5861FFCD0B900F17815 /* AllNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0CD5851FFCD0B900F17815 /* AllNews.storyboard */; };
 		CE0CD5881FFCD10700F17815 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5871FFCD10700F17815 /* MainViewController.swift */; };
+		CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE19F12720078B2200ACBAF2 /* MyStyle.swift */; };
 		CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */; };
 		CEB1AE751FFBDDDC0082A7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1AE731FFBDDDC0082A7D8 /* Main.storyboard */; };
 		CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE761FFBDDDC0082A7D8 /* GNP.xcdatamodeld */; };
@@ -75,6 +76,7 @@
 		CE0CD5831FFCD0A300F17815 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		CE0CD5851FFCD0B900F17815 /* AllNews.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllNews.storyboard; sourceTree = "<group>"; };
 		CE0CD5871FFCD10700F17815 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE19F12720078B2200ACBAF2 /* MyStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStyle.swift; sourceTree = "<group>"; };
 		CEB1AE6C1FFBDDDC0082A7D8 /* GNP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB1AE741FFBDDDC0082A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				CE0CD5621FFCCB6C00F17815 /* Networking */,
 				CE0CD55D1FFCCB1A00F17815 /* Extensions */,
+				CE19F12720078B2200ACBAF2 /* MyStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -402,10 +405,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GNP/Pods-GNP-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GradientCircularProgress/GradientCircularProgress.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientCircularProgress.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,6 +458,7 @@
 				CE0CD5461FFCC5E500F17815 /* NotSavedSource.swift in Sources */,
 				CE0CD57A1FFCCF8800F17815 /* UISideViewController.swift in Sources */,
 				CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */,
+				CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */,
 				CE0CD56D1FFCCCE200F17815 /* ArticleCell.swift in Sources */,
 				CE0CD54C1FFCC63500F17815 /* SourceProtocol.swift in Sources */,
 				CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */,
