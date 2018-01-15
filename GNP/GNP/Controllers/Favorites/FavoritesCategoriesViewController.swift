@@ -41,7 +41,7 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
     private func setupTableView() {
         self.categoriesTableView.delegate = self
         self.categoriesTableView.dataSource = self
-        self.categoriesTableView.register(UINib(nibName: "CategorySectionHeaderView", bundle: nil), forCellReuseIdentifier: "categoryCell")
+        self.categoriesTableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "categoryCell")
     }
     
     //MARK: UITableViewDataSource
@@ -51,8 +51,8 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategorySectionHeaderView
-        cell.setup(withTitle: self.categories[indexPath.row].id!, state: false, tappedHandler: nil)
+        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoryCell
+        cell.setup(withTitle: self.categories[indexPath.row].id!)
         return cell
     }
     

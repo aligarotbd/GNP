@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategorySectionHeaderView: UITableViewCell {
+class CategorySectionHeaderView: UIView {
     @IBOutlet weak var titelLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
     

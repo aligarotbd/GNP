@@ -40,6 +40,8 @@
 		CE727861200CC96700CE2F4D /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE727860200CC96700CE2F4D /* Favorites.storyboard */; };
 		CE727863200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */; };
 		CE72786B200D005000CE2F4D /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */; };
+		CE72786E200D103100CE2F4D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72786D200D103100CE2F4D /* CategoryCell.swift */; };
+		CE727870200D104600CE2F4D /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72786F200D104600CE2F4D /* CategoryCell.xib */; };
 		CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */; };
 		CEB1AE751FFBDDDC0082A7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1AE731FFBDDDC0082A7D8 /* Main.storyboard */; };
 		CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE761FFBDDDC0082A7D8 /* GNP.xcdatamodeld */; };
@@ -83,6 +85,8 @@
 		CE727860200CC96700CE2F4D /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCategoriesViewController.swift; sourceTree = "<group>"; };
 		CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE72786D200D103100CE2F4D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		CE72786F200D104600CE2F4D /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		CEB1AE6C1FFBDDDC0082A7D8 /* GNP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB1AE741FFBDDDC0082A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 		CE0CD5691FFCCC9F00F17815 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CE72786C200D101A00CE2F4D /* Category */,
 				CE0CD56A1FFCCCAE00F17815 /* Article */,
 				CE0CD56F1FFCCD1100F17815 /* SideMenuItemCollectionViewCell.swift */,
 			);
@@ -234,6 +239,15 @@
 				CE727860200CC96700CE2F4D /* Favorites.storyboard */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		CE72786C200D101A00CE2F4D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE72786D200D103100CE2F4D /* CategoryCell.swift */,
+				CE72786F200D104600CE2F4D /* CategoryCell.xib */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		CEACA4FD1FFBDF6700F6D9DC /* Models */ = {
@@ -395,6 +409,7 @@
 				CE727861200CC96700CE2F4D /* Favorites.storyboard in Resources */,
 				CE0CD5801FFCD01F00F17815 /* MyNews.storyboard in Resources */,
 				CEB1AE7A1FFBDDDC0082A7D8 /* Assets.xcassets in Resources */,
+				CE727870200D104600CE2F4D /* CategoryCell.xib in Resources */,
 				CE0CD57C1FFCCF9F00F17815 /* Menu.storyboard in Resources */,
 				CEB1AE751FFBDDDC0082A7D8 /* Main.storyboard in Resources */,
 				CE0CD5741FFCCD9600F17815 /* CategorySectionHeaderView.xib in Resources */,
@@ -482,6 +497,7 @@
 				CE0CD5821FFCD04900F17815 /* ActualNewsViewController.swift in Sources */,
 				CE0CD5461FFCC5E500F17815 /* NotSavedSource.swift in Sources */,
 				CE0CD57A1FFCCF8800F17815 /* UISideViewController.swift in Sources */,
+				CE72786E200D103100CE2F4D /* CategoryCell.swift in Sources */,
 				CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */,
 				CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */,
 				CE0CD56D1FFCCCE200F17815 /* ArticleCell.swift in Sources */,
