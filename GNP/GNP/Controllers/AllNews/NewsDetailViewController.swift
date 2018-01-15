@@ -17,14 +17,15 @@ enum NewsDetailMode {
 }
 
 class NewsDetailViewController: UIViewController, WKNavigationDelegate {
-    
     @IBOutlet weak var newsWebView: WKWebView!
     @IBOutlet weak var saveItem: UIBarButtonItem!
     
     @IBOutlet weak var initialView: UIView!
     
+    var delegate: PageScrollDelegate!
     var mode: NewsDetailMode = .notSaved
-    var article: Any?
+    var article: Article?
+    var notSavedArticle: NotSavedArticle?
     
     private var progress: GradientCircularProgress!
     private var progressView: UIView!
@@ -38,8 +39,25 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
         self.progress = GradientCircularProgress()
         self.progressView = self.progress.show(frame: CGRect(x: self.view.center.x - 50, y: self.initialView.center.y - 100, width: 100, height: 100), style: MyStyle())
         self.initialView.addSubview(self.progressView!)
-                
+        if self.mode == .saved {
+            self.article = self.delegate.startArticle()
+        } else {
+            self.notSavedArticle = self.delegate.startArticle()
+        }
+        
         self.setupContent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+        
+        super.viewWillDisappear(animated)
     }
     
     //MARK: Setup
@@ -47,15 +65,23 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     func setupContent() {
         self.newsWebView.navigationDelegate = self
         
+        self.loadWebView()
+    }
+    
+    func loadWebView() {
+        self.initialView.isHidden = false
+        UIView.animate(withDuration: 0.6, animations: {
+            self.initialView.alpha = 1
+        })
+        self.saveItem.isEnabled = false
+        self.loadFirstPage = false
+        
         if mode == .notSaved {
-            self.newsWebView.load(URLRequest(url: URL(string: (self.article as! NotSavedArticle).url!)!))
-            
-            self.saveItem.isEnabled = false
+            self.newsWebView.load(URLRequest(url: URL(string: self.notSavedArticle!.url!)!))
             self.checkSaving()
         } else {
-            try! self.newsWebView.loadHTMLString(String(contentsOf: FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\((article as! Article).id).txt")), baseURL: URL(string: (self.article as! Article).url!))
+            try! self.newsWebView.loadHTMLString(String(contentsOf: FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\(self.article!.id).txt")), baseURL: URL(string: self.article!.url!))
             self.canSave = false
-            self.saveItem.isEnabled = false
         }
     }
     
@@ -66,7 +92,7 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
             UIView.animate(withDuration: 0.6, animations: {
                 self.initialView.alpha = 0
             }, completion: { (success) in
-                self.initialView.removeFromSuperview()
+                self.initialView.isHidden = true
             })
 
             self.loadFirstPage = true
@@ -80,14 +106,34 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func save(_ sender: Any) {
         print("saving...")
-        Article.save(article as! NotSavedArticle)
+        Article.save(notSavedArticle!)
         
         self.checkSaving()
     }
     
+    @IBAction func onNextButtonTapped(_ sender: Any) {
+        if self.mode == .notSaved {
+            self.notSavedArticle = self.delegate.nextArticle()
+        } else {
+            self.article = self.delegate.nextArticle()
+        }
+        
+        self.loadWebView()
+    }
+    
+    @IBAction func onPreviousButtonTapped(_ sender: Any) {
+        if self.mode == .notSaved {
+            self.notSavedArticle = self.delegate.previousArticle()
+        } else {
+            self.article = self.delegate.previousArticle()
+        }
+        
+        self.loadWebView()
+    }
+    
     func checkSaving() {
         let fetchArticleRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        fetchArticleRequest.predicate = NSPredicate(format: "url == %@", (article as! NotSavedArticle).url!)
+        fetchArticleRequest.predicate = NSPredicate(format: "url == %@", self.notSavedArticle!.url!)
         
         let articles: [Article] = try! context.fetch(fetchArticleRequest)
         

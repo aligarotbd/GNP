@@ -15,8 +15,7 @@ enum NewsVCState {
     case categories
 }
 
-class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,UISideViewControllerDelegate  {
-    
+class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,UISideViewControllerDelegate, PageScrollDelegate {
     @IBOutlet weak var articlesTableView: UITableView!
     
     @IBOutlet weak var sideMenuRightPositionConstraint: NSLayoutConstraint!
@@ -32,6 +31,7 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     private var sortMode: SortMode = .popularity
     private var articlesByCategories: [(String, [NotSavedArticle])] = []
     private var sideMenuIsActive = false
+    private var currentNewsIndex: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,14 +207,17 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.currentNewsIndex = indexPath
+
         let newsDetailVC = storyboard?.instantiateViewController(withIdentifier: "newsDetailVC") as! NewsDetailViewController
-        if self.mode == .categories {
-            newsDetailVC.article = self.articlesByCategories[indexPath.section].1[indexPath.row]
-        }
-        else {
-            newsDetailVC.article = self.articles[indexPath.row]
-        }
+        newsDetailVC.delegate = self
+
+//        if self.mode == .categories {
+//            newsDetailVC.notSavedArticle = self.articlesByCategories[indexPath.section].1[indexPath.row]
+//        }
+//        else {
+//            newsDetailVC.notSavedArticle = self.articles[indexPath.row]
+//        }
         
         self.navigationController?.pushViewController(newsDetailVC, animated: true)
     }
@@ -274,6 +277,52 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         })
         
         self.articlesTableView.isUserInteractionEnabled = true
+    }
+    
+    //MARK: PageScrollDelegate
+    
+    func startArticle<A>() -> A where A : ArticleProtocol {
+        if self.mode == .news {
+            return self.articles[self.currentNewsIndex.row] as! A
+        } else {
+            return self.articlesByCategories[self.currentNewsIndex.section].1[self.currentNewsIndex.row] as! A
+        }
+    }
+
+    func nextArticle<A>() -> A where A : ArticleProtocol {
+        self.currentNewsIndex.row += 1
+
+        if self.mode == .news {
+            if self.currentNewsIndex.row == self.articles.count {
+                self.currentNewsIndex.row = 0
+            }
+            
+            return self.articles[self.currentNewsIndex.row] as! A
+        } else {
+            if self.currentNewsIndex.row == self.articlesByCategories[self.currentNewsIndex.section].1.count {
+                self.currentNewsIndex.row = 0
+            }
+            
+            return self.articlesByCategories[self.currentNewsIndex.section].1[self.currentNewsIndex.row] as! A
+        }
+    }
+
+    func previousArticle<A>() -> A where A : ArticleProtocol {
+        self.currentNewsIndex.row -= 1
+
+        if self.mode == .news {
+            if self.currentNewsIndex.row < 0 {
+                self.currentNewsIndex.row = self.articles.count - 1
+            }
+            
+            return self.articles[self.currentNewsIndex.row] as! A
+        } else {
+            if self.currentNewsIndex.row < 0 {
+                self.currentNewsIndex.row = self.articlesByCategories[self.currentNewsIndex.section].1.count - 1
+            }
+            
+            return self.articlesByCategories[self.currentNewsIndex.section].1[self.currentNewsIndex.row] as! A
+        }
     }
     
     //MARK Event Handlers

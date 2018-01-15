@@ -10,13 +10,13 @@ import UIKit
 import CoreData
 import WebKit
 
-class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
-    
+class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, PageScrollDelegate{
     @IBOutlet weak var articleTableView: UITableView!
     @IBOutlet weak var searchBarButtonItem: UIBarButtonItem!
     
     private var fetchController: NSFetchedResultsController<Article>?
     private var articles: [Article] = []
+    private var currentArticleIndex: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +77,12 @@ class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.currentArticleIndex = indexPath
+        
         let storyboard = UIStoryboard(name: "AllNews", bundle: nil)
         let newsDetailVC = storyboard.instantiateViewController(withIdentifier: "newsDetailVC") as! NewsDetailViewController
         newsDetailVC.mode = .saved
-        newsDetailVC.article = self.articles[indexPath.row]
+        newsDetailVC.delegate = self
         
         self.navigationController?.pushViewController(newsDetailVC, animated: true)
     }
@@ -110,12 +112,31 @@ class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableV
         self.articleTableView.reloadData()
     }
     
-    //MARK: Event handlers
-    
-    //TODO: It will be implemented
-    @IBAction func onSearchTapped(_ sender: Any) {
-        print("searching ...")
+    func startArticle<A>() -> A where A : ArticleProtocol {
+        return articles[self.currentArticleIndex.row] as! A
     }
+    
+    func nextArticle<A>() -> A where A : ArticleProtocol {
+        self.currentArticleIndex.row += 1
+        
+        if self.currentArticleIndex.row == self.articles.count {
+            self.currentArticleIndex.row = 0
+        }
+        
+        return self.articles[self.currentArticleIndex.row] as! A
+    }
+    
+    func previousArticle<A>() -> A where A : ArticleProtocol {
+        self.currentArticleIndex.row -= 1
+        
+        if self.currentArticleIndex.row < 0 {
+            self.currentArticleIndex.row = self.articles.count - 1
+        }
+        
+        return self.articles[self.currentArticleIndex.row] as! A
+    }
+    
+    //MARK: Event handlers
     
     func fetchData() {
         if self.fetchController == nil {
