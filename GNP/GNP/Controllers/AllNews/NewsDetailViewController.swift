@@ -24,8 +24,9 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     
     var delegate: PageScrollDelegate!
     var mode: NewsDetailMode = .notSaved
-    var article: Article?
-    var notSavedArticle: NotSavedArticle?
+    var article: ArticleProtocol?
+//    var article: Article?
+//    var notSavedArticle: NotSavedArticle?
     
     private var progress: GradientCircularProgress!
     private var progressView: UIView!
@@ -42,7 +43,7 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
         if self.mode == .saved {
             self.article = self.delegate.startArticle()
         } else {
-            self.notSavedArticle = self.delegate.startArticle()
+            self.article = self.delegate.startArticle()
         }
         
         self.setupContent()
@@ -77,10 +78,10 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
         self.loadFirstPage = false
         
         if mode == .notSaved {
-            self.newsWebView.load(URLRequest(url: URL(string: self.notSavedArticle!.url!)!))
+            self.newsWebView.load(URLRequest(url: URL(string: self.article!.url!)!))
             self.checkSaving()
         } else {
-            try! self.newsWebView.loadHTMLString(String(contentsOf: FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\(self.article!.id).txt")), baseURL: URL(string: self.article!.url!))
+            try! self.newsWebView.loadHTMLString(String(contentsOf: FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\((self.article as! Article).id).txt")), baseURL: URL(string: self.article!.url!))
             self.canSave = false
         }
     }
@@ -106,34 +107,26 @@ class NewsDetailViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func save(_ sender: Any) {
         print("saving...")
-        Article.save(notSavedArticle!)
+        Article.save(article as! NotSavedArticle)
         
         self.checkSaving()
     }
     
     @IBAction func onNextButtonTapped(_ sender: Any) {
-        if self.mode == .notSaved {
-            self.notSavedArticle = self.delegate.nextArticle()
-        } else {
-            self.article = self.delegate.nextArticle()
-        }
+        self.article = self.delegate.nextArticle()
         
         self.loadWebView()
     }
     
     @IBAction func onPreviousButtonTapped(_ sender: Any) {
-        if self.mode == .notSaved {
-            self.notSavedArticle = self.delegate.previousArticle()
-        } else {
-            self.article = self.delegate.previousArticle()
-        }
+        self.article = self.delegate.previousArticle()
         
         self.loadWebView()
     }
     
     func checkSaving() {
         let fetchArticleRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        fetchArticleRequest.predicate = NSPredicate(format: "url == %@", self.notSavedArticle!.url!)
+        fetchArticleRequest.predicate = NSPredicate(format: "url == %@", self.article!.url!)
         
         let articles: [Article] = try! context.fetch(fetchArticleRequest)
         

@@ -10,10 +10,11 @@ import UIKit
 import CoreData
 import WebKit
 
-class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, PageScrollDelegate{
-    @IBOutlet weak var articleTableView: UITableView!
+class SavedNewsViewController: UIViewController, ArticlesTableViewDataSource, ArticlesTableViewDelegate, NSFetchedResultsControllerDelegate, PageScrollDelegate{
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var searchBarButtonItem: UIBarButtonItem!
     
+    private var articlesTableView: ArticlesTableView?
     private var fetchController: NSFetchedResultsController<Article>?
     private var articles: [Article] = []
     private var currentArticleIndex: IndexPath!
@@ -41,67 +42,31 @@ class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: Setup
     
     func setupTableView() {
-        self.articleTableView.dataSource = self
-        self.articleTableView.delegate = self
-        
-        self.articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "articleCell")
-        
-        self.articleTableView.backgroundColor = .appColor
+        self.articlesTableView = UINib(nibName: "ArticlesTableView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ArticlesTableView
+        self.articlesTableView?.frame = self.mainView.frame
+        self.mainView.addSubview(self.articlesTableView!)
+        self.articlesTableView?.dataSource = self
+        self.articlesTableView?.delegate = self
+        self.articlesTableView?.setupTableView()
     }
     
-    //MARK: UITableViewDataSource
+    //MARK: ArticlesTableViewDelegate
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.articleTableView.dequeueReusableCell(withIdentifier: "articleCell") as! ArticleCell
-        
-        var mode: ArticleCellMode!
-        if indexPath.row % 2 == 0 {
-            mode = .imageLeft
-        } else {
-            mode = .imageRight
-        }
-        
-        cell.setup(withArticle: self.articles[indexPath.row], andMode: mode)
-        
-        if let image = self.articles[indexPath.row].image {
-            cell.articleImageView.image = UIImage(data: image as Data)
-        }
-        
-        return cell
-    }
-    
-    //MARK: UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func selectArticle(withIndexPath indexPath: IndexPath) {
         self.currentArticleIndex = indexPath
         
         let storyboard = UIStoryboard(name: "AllNews", bundle: nil)
         let newsDetailVC = storyboard.instantiateViewController(withIdentifier: "newsDetailVC") as! NewsDetailViewController
-        newsDetailVC.mode = .saved
         newsDetailVC.delegate = self
+        newsDetailVC.mode = .saved
         
         self.navigationController?.pushViewController(newsDetailVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let articleCell = cell as? ArticleCell {
-            articleCell.initialState()
-            articleCell.animCellIfNeeded()
-        }
-    }
+    //MARK: ArticlesTableViewDataSource
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let articleCell = cell as? ArticleCell {
-            articleCell.initialState()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+    func getArticles() -> [ArticleProtocol] {
+        return self.articles
     }
     
     //MARK: NSFetchedResultsControllerDelegate
@@ -109,31 +74,33 @@ class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableV
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.articles = self.fetchController!.fetchedObjects!
         
-        self.articleTableView.reloadData()
+        self.articlesTableView?.reloadTable()
     }
     
-    func startArticle<A>() -> A where A : ArticleProtocol {
-        return articles[self.currentArticleIndex.row] as! A
+    func startArticle() -> ArticleProtocol {
+        return articles[self.currentArticleIndex.row]
     }
     
-    func nextArticle<A>() -> A where A : ArticleProtocol {
+    //MARK: PageScrollDelegate
+    
+    func nextArticle() -> ArticleProtocol {
         self.currentArticleIndex.row += 1
         
         if self.currentArticleIndex.row == self.articles.count {
             self.currentArticleIndex.row = 0
         }
         
-        return self.articles[self.currentArticleIndex.row] as! A
+        return self.articles[self.currentArticleIndex.row]
     }
     
-    func previousArticle<A>() -> A where A : ArticleProtocol {
+    func previousArticle() -> ArticleProtocol {
         self.currentArticleIndex.row -= 1
         
         if self.currentArticleIndex.row < 0 {
             self.currentArticleIndex.row = self.articles.count - 1
         }
         
-        return self.articles[self.currentArticleIndex.row] as! A
+        return self.articles[self.currentArticleIndex.row] 
     }
     
     //MARK: Event handlers
