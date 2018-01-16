@@ -30,12 +30,13 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
     private func  setupContent() {
         self.fetchData()
         self.setupUI()
+        
+        self.sideMenuVC.showOnlyCollectionView()
     }
     
     private func setupUI() {
         self.sideMenuRightConstraint.constant = self.view.frame.width * 2 / -3
-        
-        self.sideMenuVC.showOnlyCollectionView()
+        self.categoriesTableView.backgroundColor = .appColor
     }
     
     private func setupTableView() {
@@ -125,7 +126,6 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", NSNumber(value: true))
         self.categories = try! context.fetch(fetchRequest)
-        print(categories.count)
         self.categoriesTableView.reloadData()
     }
 }

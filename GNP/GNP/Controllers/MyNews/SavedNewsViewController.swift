@@ -47,6 +47,7 @@ class SavedNewsViewController: UIViewController, UITableViewDataSource, UITableV
         self.articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "articleCell")
         self.articleTableView.register(UINib(nibName: "CategorySectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "categorySection")
         
+        self.articleTableView.backgroundColor = .appColor
     }
     
     //MARK: UITableViewDataSource
