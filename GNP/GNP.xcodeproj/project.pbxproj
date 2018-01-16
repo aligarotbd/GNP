@@ -325,8 +325,8 @@
 			children = (
 				CEACA5001FFBDF8400F6D9DC /* Helpers */,
 				CEACA4FF1FFBDF7C00F6D9DC /* Controllers */,
-				CEACA4FE1FFBDF6F00F6D9DC /* Views */,
 				CEACA4FD1FFBDF6700F6D9DC /* Models */,
+				CEACA4FE1FFBDF6F00F6D9DC /* Views */,
 				CEACA5011FFBDF9200F6D9DC /* Resources */,
 				CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */,
 				CEB1AE7B1FFBDDDC0082A7D8 /* LaunchScreen.storyboard */,

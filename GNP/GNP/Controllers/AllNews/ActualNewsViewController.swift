@@ -69,6 +69,8 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.articlesTableView.dataSource = self
         self.articlesTableView.delegate = self
         
+        self.articlesTableView.backgroundColor = .appColor
+        
         self.articlesTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "articleCell")
         self.articlesTableView.register(UINib(nibName: "CategorySectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "categorySection")
         
@@ -143,27 +145,31 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 })
             } else {
-                var cellsIndexPath: [IndexPath] = []
-                for (row, _) in self.articlesByCategories[section].1.enumerated() {
-                    cellsIndexPath.append(IndexPath(item: row, section: section))
-                }
-                if cellsIndexPath.count > 0 {
-                    headerView.isUserInteractionEnabled = false
-                    self.articlesByCategories[section].1 = []
-                    if #available(iOS 11.0, *) {
-                        self.articlesTableView.performBatchUpdates( {
-                            var sections = IndexSet()
-                            sections.insert(section)
-                            self.selectedSection.remove(at: (self.selectedSection.enumerated().first(where: {$1 == section})!.offset))
-                            self.articlesTableView.reloadSections(sections, with: .automatic)
-                            self.articlesTableView.deleteRows(at: cellsIndexPath, with: UITableViewRowAnimation.bottom)
-                        }, completion: { success in
-                            headerView.isUserInteractionEnabled = true
-                        })
-                    } else {
-                        // Fallback on earlier versions
+                self.articlesTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .none, animated: true)
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    var cellsIndexPath: [IndexPath] = []
+                    for (row, _) in self.articlesByCategories[section].1.enumerated() {
+                        cellsIndexPath.append(IndexPath(item: row, section: section))
                     }
-                }
+                    if cellsIndexPath.count > 0 {
+                        headerView.isUserInteractionEnabled = false
+                        self.articlesByCategories[section].1 = []
+                        if #available(iOS 11.0, *) {
+                            self.articlesTableView.performBatchUpdates( {
+                                var sections = IndexSet()
+                                sections.insert(section)
+                                self.selectedSection.remove(at: (self.selectedSection.enumerated().first(where: {$1 == section})!.offset))
+                                self.articlesTableView.reloadSections(sections, with: .automatic)
+                                self.articlesTableView.deleteRows(at: cellsIndexPath, with: UITableViewRowAnimation.bottom)
+                            }, completion: { success in
+                                headerView.isUserInteractionEnabled = true
+                            })
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                    }
+                })
             }
         })
         
@@ -248,6 +254,8 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if let items = selectedItems, !items.isEmpty {
             self.mode = .categories
+            self.articlesByCategories = []
+            self.selectedSection = []
             items.forEach({self.articlesByCategories.append(($0, []))})
             self.articlesTableView.reloadData()
             return
