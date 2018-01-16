@@ -16,7 +16,7 @@ class  NotSavedArticle: ArticleProtocol {
     var specification: String?
     var title: String?
     var url: String?
-    var source: NotSavedSource?
+    var sourceArticle: SourceProtocol?
     
     static func parseArticle(fromRawObject rawObject: Any?) -> NotSavedArticle {
         let article = NotSavedArticle()
@@ -34,9 +34,9 @@ class  NotSavedArticle: ArticleProtocol {
             article.url = json["url"] as? String
             
             if let sourceJSON = json["source"] as? [String : Any?] {
-                article.source = NotSavedSource()
-                article.source?.id = sourceJSON["id"] as? String
-                article.source?.name = sourceJSON["name"] as? String
+                article.sourceArticle = NotSavedSource()
+                article.sourceArticle?.id = sourceJSON["id"] as? String
+                article.sourceArticle?.name = sourceJSON["name"] as? String
             }
         }
         

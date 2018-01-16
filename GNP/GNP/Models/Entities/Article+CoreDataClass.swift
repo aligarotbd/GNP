@@ -14,6 +14,7 @@ import  UIKit
 @objc(Article)
 public class Article: NSManagedObject, ArticleProtocol {
     var imageURL: String?
+    var sourceArticle: SourceProtocol?
     
     static func save(_ notSavedArticle: NotSavedArticle) {
         let article = Article(context: context)
@@ -32,17 +33,18 @@ public class Article: NSManagedObject, ArticleProtocol {
         let fetchSourceRequest: NSFetchRequest<Source> = Source.fetchRequest()
         let sources: [Source] = try! context.fetch(fetchSourceRequest)
         for source in sources {
-            if source.id == notSavedArticle.source?.id {
+            if source.id == notSavedArticle.sourceArticle?.id {
                 article.source = source
             }
         }
         if article.source == nil {
             let source = Source(context: context)
-            source.id = notSavedArticle.source?.id
-            source.name = notSavedArticle.source?.name
+            source.id = notSavedArticle.sourceArticle?.id
+            source.name = notSavedArticle.sourceArticle?.name
             
             article.source = source
         }
+        article.sourceArticle = article.source
         
         article.id = self.generateID()
         

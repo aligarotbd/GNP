@@ -47,36 +47,40 @@ class ArticleCell: UITableViewCell {
         self.queue.cancelAllOperations()
     }
     
-    func setup<M: ArticleProtocol>(withArticle article: M, andMode mode: ArticleCellMode) {
+    func setup(withArticle article: ArticleProtocol, andMode mode: ArticleCellMode) {
         self.url = URL(string: article.imageURL ?? "")
-        self.sourceNameLabel.text = article.source?.name
+        self.sourceNameLabel.text = article.sourceArticle?.name
         self.articleTitleLabel.text = article.title
         self.articleDescriptionLabel.text = article.specification
-        queue.maxConcurrentOperationCount = 1        
-        if let url = self.url {
-            print(queue.operations.count)
-            queue.addOperation {
-                do{
-                    let data = try Data(contentsOf: url)
-                    if url == self.url {
-                        DispatchQueue.main.async {
-                            UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
-                                self.articleImageView.alpha = 0.2
-                            }, completion: { success in
-                                self.articleImageView.image = UIImage(data: data)
-                                self.articleImageView.alpha = 1
-                                self.imageIsDownloaded = true
-                            })
+        if let savedArticle = article as? Article{
+            if let image = savedArticle.image {
+                self.articleImageView.image = UIImage(data: image as Data)
+            }
+        } else {
+            queue.maxConcurrentOperationCount = 1
+            if let url = self.url {
+                queue.addOperation {
+                    do{
+                        let data = try Data(contentsOf: url)
+                        if url == self.url {
+                            DispatchQueue.main.async {
+                                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
+                                    self.articleImageView.alpha = 0.2
+                                }, completion: { success in
+                                    self.articleImageView.image = UIImage(data: data)
+                                    self.articleImageView.alpha = 1
+                                    self.imageIsDownloaded = true
+                                })
+                            }
                         }
+                    } catch let error {
+                        print(error)
+                        self.imageIsDownloaded = true
+                        self.readyForAnimate = true
                     }
-                } catch let error {
-                    print(error)
-                    self.imageIsDownloaded = true
-                    self.readyForAnimate = true
                 }
             }
         }
-        
         self.currentMode = mode
     }
     
