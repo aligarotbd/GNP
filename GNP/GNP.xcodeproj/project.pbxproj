@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		93CE7D20C7B7F4E618BBAFC6 /* Pods_GNP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0344C0215F4833A47D3B1C0 /* Pods_GNP.framework */; };
+		CE0BDFC2200DEB1B0075A1A5 /* ArticlesByCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BDFC1200DEB1B0075A1A5 /* ArticlesByCategoryViewController.swift */; };
 		CE0CD5441FFCC5C300F17815 /* NotSavedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5431FFCC5C300F17815 /* NotSavedArticle.swift */; };
 		CE0CD5461FFCC5E500F17815 /* NotSavedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5451FFCC5E500F17815 /* NotSavedSource.swift */; };
 		CE0CD54A1FFCC62500F17815 /* ArticleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD5491FFCC62500F17815 /* ArticleProtocol.swift */; };
@@ -53,6 +54,7 @@
 		876AF484FF431AE1A06C3FE6 /* Pods-GNP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GNP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GNP/Pods-GNP.debug.xcconfig"; sourceTree = "<group>"; };
 		C0344C0215F4833A47D3B1C0 /* Pods_GNP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD46C6C13A247725959ECFDD /* Pods-GNP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GNP.release.xcconfig"; path = "Pods/Target Support Files/Pods-GNP/Pods-GNP.release.xcconfig"; sourceTree = "<group>"; };
+		CE0BDFC1200DEB1B0075A1A5 /* ArticlesByCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesByCategoryViewController.swift; sourceTree = "<group>"; };
 		CE0CD5431FFCC5C300F17815 /* NotSavedArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSavedArticle.swift; sourceTree = "<group>"; };
 		CE0CD5451FFCC5E500F17815 /* NotSavedSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSavedSource.swift; sourceTree = "<group>"; };
 		CE0CD5491FFCC62500F17815 /* ArticleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleProtocol.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				CE727862200CCA9600CE2F4D /* FavoritesCategoriesViewController.swift */,
+				CE0BDFC1200DEB1B0075A1A5 /* ArticlesByCategoryViewController.swift */,
 				CE727860200CC96700CE2F4D /* Favorites.storyboard */,
 			);
 			path = Favorites;
@@ -498,6 +501,7 @@
 				CE0CD5461FFCC5E500F17815 /* NotSavedSource.swift in Sources */,
 				CE0CD57A1FFCCF8800F17815 /* UISideViewController.swift in Sources */,
 				CE72786E200D103100CE2F4D /* CategoryCell.swift in Sources */,
+				CE0BDFC2200DEB1B0075A1A5 /* ArticlesByCategoryViewController.swift in Sources */,
 				CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */,
 				CE19F12820078B2200ACBAF2 /* MyStyle.swift in Sources */,
 				CE0CD56D1FFCCCE200F17815 /* ArticleCell.swift in Sources */,

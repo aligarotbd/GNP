@@ -63,6 +63,13 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
         return self.categoriesTableView.frame.height / 2
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let articlesVC = self.storyboard?.instantiateViewController(withIdentifier: "ArticlesByCategory") as! ArticlesByCategoryViewController
+        articlesVC.categoryID = self.categories[indexPath.row].id!
+        
+        self.navigationController?.pushViewController(articlesVC, animated: true)
+    }
+    
     //MARK: UISideViewControllerDelegate
     
     func dataForSideView() -> [String] {
