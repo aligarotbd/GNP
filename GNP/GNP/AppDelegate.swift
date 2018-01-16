@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for categoryID in self.allCategories {
                 let category = Category(context: context)
                 category.id = categoryID
+                category.isFavorite = true
             }
             
             try! context.save()

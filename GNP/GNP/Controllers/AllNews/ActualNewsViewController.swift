@@ -211,13 +211,6 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
 
         let newsDetailVC = storyboard?.instantiateViewController(withIdentifier: "newsDetailVC") as! NewsDetailViewController
         newsDetailVC.delegate = self
-
-//        if self.mode == .categories {
-//            newsDetailVC.notSavedArticle = self.articlesByCategories[indexPath.section].1[indexPath.row]
-//        }
-//        else {
-//            newsDetailVC.notSavedArticle = self.articles[indexPath.row]
-//        }
         
         self.navigationController?.pushViewController(newsDetailVC, animated: true)
     }
@@ -241,7 +234,7 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: UISideViewControllerDelegate
     
     func dataForSideView() -> [String] {
-        return ["1", "2", "3", "4", "5", "6"]
+        return try! context.fetch(Category.fetchRequest() as! NSFetchRequest<Category>).map({$0.id!})
     }
     
     func search(byKeyWords keyWords: String?, selectedItems: [String]?, sortMode: SortMode?) {
@@ -343,7 +336,6 @@ class ActualNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.sideMenuIsActive = !self.sideMenuIsActive
         self.articlesTableView.isUserInteractionEnabled = !self.sideMenuIsActive
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
