@@ -43,6 +43,8 @@
 		CE72786B200D005000CE2F4D /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */; };
 		CE72786E200D103100CE2F4D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72786D200D103100CE2F4D /* CategoryCell.swift */; };
 		CE727870200D104600CE2F4D /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72786F200D104600CE2F4D /* CategoryCell.xib */; };
+		CE83FFD3200E880B00BF8421 /* ArticlesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83FFD2200E880B00BF8421 /* ArticlesTableView.swift */; };
+		CE83FFD5200E8A5500BF8421 /* ArticlesTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE83FFD4200E8A5500BF8421 /* ArticlesTableView.xib */; };
 		CEB1AE701FFBDDDC0082A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */; };
 		CEB1AE751FFBDDDC0082A7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1AE731FFBDDDC0082A7D8 /* Main.storyboard */; };
 		CEB1AE781FFBDDDC0082A7D8 /* GNP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB1AE761FFBDDDC0082A7D8 /* GNP.xcdatamodeld */; };
@@ -89,6 +91,8 @@
 		CE727869200D005000CE2F4D /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE72786D200D103100CE2F4D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		CE72786F200D104600CE2F4D /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		CE83FFD2200E880B00BF8421 /* ArticlesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesTableView.swift; sourceTree = "<group>"; };
+		CE83FFD4200E8A5500BF8421 /* ArticlesTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlesTableView.xib; sourceTree = "<group>"; };
 		CEB1AE6C1FFBDDDC0082A7D8 /* GNP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB1AE6F1FFBDDDC0082A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB1AE741FFBDDDC0082A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -267,6 +271,8 @@
 				CE0CD5691FFCCC9F00F17815 /* Cells */,
 				CE0CD5711FFCCD8200F17815 /* CategorySectionHeaderView.swift */,
 				CE0CD5731FFCCD9600F17815 /* CategorySectionHeaderView.xib */,
+				CE83FFD2200E880B00BF8421 /* ArticlesTableView.swift */,
+				CE83FFD4200E8A5500BF8421 /* ArticlesTableView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				CE0CD56E1FFCCCE200F17815 /* ArticleCell.xib in Resources */,
 				CEB1AE7D1FFBDDDC0082A7D8 /* LaunchScreen.storyboard in Resources */,
 				CE727861200CC96700CE2F4D /* Favorites.storyboard in Resources */,
+				CE83FFD5200E8A5500BF8421 /* ArticlesTableView.xib in Resources */,
 				CE0CD5801FFCD01F00F17815 /* MyNews.storyboard in Resources */,
 				CEB1AE7A1FFBDDDC0082A7D8 /* Assets.xcassets in Resources */,
 				CE727870200D104600CE2F4D /* CategoryCell.xib in Resources */,
@@ -488,6 +495,7 @@
 				CE0CD57E1FFCCFF000F17815 /* SavedNewsViewController.swift in Sources */,
 				CE0CD55B1FFCC72C00F17815 /* Category+CoreDataClass.swift in Sources */,
 				CE0CD5641FFCCB8700F17815 /* RequestManager.swift in Sources */,
+				CE83FFD3200E880B00BF8421 /* ArticlesTableView.swift in Sources */,
 				CE0CD5591FFCC72C00F17815 /* Article+CoreDataClass.swift in Sources */,
 				CE0CD5581FFCC72C00F17815 /* Source+CoreDataProperties.swift in Sources */,
 				CE0CD5661FFCCBB300F17815 /* RequestManager+Category.swift in Sources */,
@@ -653,7 +661,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79C33ML62N;
 				INFOPLIST_FILE = GNP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = CHI.GNP;
@@ -671,7 +679,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79C33ML62N;
 				INFOPLIST_FILE = GNP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = CHI.GNP;

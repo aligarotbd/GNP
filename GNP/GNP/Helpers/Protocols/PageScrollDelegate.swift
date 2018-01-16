@@ -9,8 +9,8 @@
 import Foundation
 
 protocol PageScrollDelegate {
-    func startArticle<A: ArticleProtocol>() -> A
+    func startArticle() -> ArticleProtocol
     
-    func nextArticle<A: ArticleProtocol>() -> A
-    func previousArticle<A: ArticleProtocol>() -> A
+    func nextArticle() -> ArticleProtocol
+    func previousArticle() -> ArticleProtocol
 }
