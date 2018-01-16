@@ -8,60 +8,36 @@
 
 import UIKit
 
-class ArticlesByCategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PageScrollDelegate{
-    @IBOutlet weak var articlesTableView: UITableView!
+class ArticlesByCategoryViewController: UIViewController, ArticlesTableViewDataSource, ArticlesTableViewDelegate, PageScrollDelegate {
+    @IBOutlet weak var mainView: UIView!
     
     var categoryID: String!
     
     private var articles: [NotSavedArticle] = []
     private var currentArticleIndex: IndexPath!
+    private var articlesTableView: ArticlesTableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.setupTableView()
         self.fetchArticles(categoryNews: self.categoryID, afterFetchHandler: {
-            self.articlesTableView.reloadData()
+            self.setupTableView()
         })
     }
     
+    //MARK: Setup
+    
     func setupTableView() {
-        self.articlesTableView.dataSource = self
-        self.articlesTableView.delegate = self
-        
-        self.articlesTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "articleCell")
-        
-        self.articlesTableView.backgroundColor = .appColor
+        self.articlesTableView = UINib(nibName: "ArticlesTableView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ArticlesTableView
+        self.articlesTableView?.frame = self.mainView.frame
+        self.mainView.addSubview(self.articlesTableView!)
+        self.articlesTableView?.dataSource = self
+        self.articlesTableView?.delegate = self
+        self.articlesTableView?.setupTableView()
     }
     
-    //MARK: UITableViewDataSource
+    //MARK: ArticlesTableViewDelegate
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.articlesTableView.dequeueReusableCell(withIdentifier: "articleCell") as! ArticleCell
-        
-        var mode: ArticleCellMode!
-        if indexPath.row % 2 == 0 {
-            mode = .imageLeft
-        } else {
-            mode = .imageRight
-        }
-        
-        cell.setup(withArticle: self.articles[indexPath.row], andMode: mode)
-        
-        if let image = self.articles[indexPath.row].image {
-            cell.articleImageView.image = UIImage(data: image as Data)
-        }
-        
-        return cell
-    }
-    
-    //MARK: UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func selectArticle(withIndexPath indexPath: IndexPath) {
         self.currentArticleIndex = indexPath
         
         let storyboard = UIStoryboard(name: "AllNews", bundle: nil)
@@ -71,46 +47,39 @@ class ArticlesByCategoryViewController: UIViewController, UITableViewDataSource,
         self.navigationController?.pushViewController(newsDetailVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let articleCell = cell as? ArticleCell {
-            articleCell.initialState()
-            articleCell.animCellIfNeeded()
-        }
+    //MARK: ArticlesTableViewDataSource
+    
+    func getArticles() -> [ArticleProtocol] {
+        return self.articles
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let articleCell = cell as? ArticleCell {
-            articleCell.initialState()
-        }
+    //MARK: PageScrollDelegate
+    
+    func startArticle() -> ArticleProtocol {
+        return articles[self.currentArticleIndex.row]
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
-    }
-    
-    func startArticle<A>() -> A where A : ArticleProtocol {
-        return articles[self.currentArticleIndex.row] as! A
-    }
-    
-    func nextArticle<A>() -> A where A : ArticleProtocol {
+    func nextArticle() -> ArticleProtocol {
         self.currentArticleIndex.row += 1
         
         if self.currentArticleIndex.row == self.articles.count {
             self.currentArticleIndex.row = 0
         }
         
-        return self.articles[self.currentArticleIndex.row] as! A
+        return self.articles[self.currentArticleIndex.row]
     }
     
-    func previousArticle<A>() -> A where A : ArticleProtocol {
+    func previousArticle() -> ArticleProtocol {
         self.currentArticleIndex.row -= 1
         
         if self.currentArticleIndex.row < 0 {
             self.currentArticleIndex.row = self.articles.count - 1
         }
         
-        return self.articles[self.currentArticleIndex.row] as! A
+        return self.articles[self.currentArticleIndex.row]
     }
+    
+    //MARK: Fetch data
     
     func fetchArticles(categoryNews: String?, afterFetchHandler: @escaping ()->Void) {
         RequestManager.fetchArticles(byKeyWord: nil, categoryNews: categoryNews, completionHandler: {[weak self] success, result, error in

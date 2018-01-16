@@ -9,8 +9,6 @@
 import Foundation
 
 protocol ArticleProtocol {
-    associatedtype myType: SourceProtocol
-    
     var author: String? {get set}
     var image: NSData? {get set}
     var imageURL: String? {get set}
@@ -18,6 +16,6 @@ protocol ArticleProtocol {
     var specification: String? {get set}
     var title: String? {get set}
     var url: String? {get set}
-    var source: myType? {get set}
+    var sourceArticle: SourceProtocol? {get set}
 }
 
