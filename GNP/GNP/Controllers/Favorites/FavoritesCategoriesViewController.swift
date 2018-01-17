@@ -64,6 +64,7 @@ class FavoritesCategoriesViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.categoriesTableView.deselectRow(at: indexPath, animated: false)
         let articlesVC = self.storyboard?.instantiateViewController(withIdentifier: "ArticlesByCategory") as! ArticlesByCategoryViewController
         articlesVC.categoryID = self.categories[indexPath.row].id!
         
